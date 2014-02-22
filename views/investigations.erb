@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">    
+  <meta name="apple-touch-fullscreen" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes"> 
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="description" content="Name an MC and we'll tell you how sexist they are.">
+  <meta property="og:title" content="Name an MC and we'll tell you how sexist they are.">
+  <title>Investigate Companies</title>
+  <script>window.rm = {};</script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+  <link rel="icon" href="favicon.ico" type="image/x-icon"/>
+</head>
+<body>
+  <header class="small">
+    <div class="wrapper">
+      <h1>Investigate Companies</h1>
+    </div>
+  </header>
+  <section>
+    <div class="wrapper">
+      <ul>
+      <% companies.each do |company| %>
+        <li><a href="/investigations/new?company_id=<%= company.id %>"><%= company.name %></a></h3>
+      <% end %>
+      </ul>
+    </div>
+  </section>
+  <footer>Made by <a href="http://andersfisher.com">Anders Fisher</a></footer>
+</body>
+</html>

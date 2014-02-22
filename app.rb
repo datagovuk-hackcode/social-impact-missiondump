@@ -20,11 +20,15 @@ helpers do
   end
 
   def fetch_companies query
-    companies = Company.all(company_name: query)
+    if query == "*"
+      companies = Company.all
+    else
+      companies = Company.all(name: query)
+    end
     response = []
     companies.each do |company|
       response << {
-        company_name: company.company_name,
+        name: company.name,
         mission_statement: company.mission_statement,
         mission_statement_proof: company.mission_statement_proof,
         mission_statement_investigator: company.mission_statement_proof,
@@ -51,7 +55,7 @@ DataMapper.setup(:default, ENV['HEROKU_POSTGRESQL_WHITE_URL'] || ENV['LOCAL_URL'
 class Company
   include DataMapper::Resource
   property :id, Serial
-  property :company_name, String
+  property :name, String
   property :mission_statement, Text,   :lazy => false
   property :mission_statement_proof, Text,   :lazy => false
   property :mission_statement_investigator, String
@@ -70,10 +74,6 @@ end
 DataMapper.finalize
 DataMapper.auto_upgrade!
 
-get '/' do
-  send_file 'sample.html'
-end
-
 get '/script.js' do
   send_file 'script.js'
 end
@@ -82,16 +82,44 @@ get '/style.css' do
   send_file 'style.css'
 end
 
+get '/' do
+  erb :index
+end
+
+get '/companies' do
+  erb :companies, :locals => { :companies => Company.all }
+end
+
 get '/companies/new' do
   protected!
-  send_file 'new_company.html'
+  erb :new_company
+end
+
+get '/investigations' do
+  protected!
+  erb :investigations, :locals => { :companies => Company.all }
+end
+
+get '/investigations/new' do
+  protected!
+  company_id = Sanitize.clean(params[:company_id])
+  company = Company.first(id: company_id)
+  erb :new_investigation, :locals => { :company => company }
 end
 
 post '/companies' do
   protected!
   Company.create({
-    company_name: Sanitize.clean(params[:company_name]),
-    mission_statement: Sanitize.clean(params[:mission_statement]),
+    name: Sanitize.clean(params[:name]),
+    mission_statement: Sanitize.clean(params[:mission_statement])
+  })
+  redirect to('/companies.json')
+end
+
+post '/companies/update' do
+  protected!
+  company = Company.first(id: Sanitize.clean(params[:company_id]))
+  company.update({
     mission_statement_proof: Sanitize.clean(params[:mission_statement_proof]),
     mission_statement_investigator: Sanitize.clean(params[:mission_statement_investigator])
   })
@@ -103,5 +131,5 @@ get '/companies.json' do
 end
 
 get '/sample.json' do
-  fetch_companies(Sanitize.clean(params[:company_name])).to_json
+  fetch_companies(Sanitize.clean(params[:name])).to_json
 end

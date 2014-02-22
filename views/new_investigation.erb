@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">    
+  <meta name="apple-touch-fullscreen" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes"> 
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="description" content="Name an MC and we'll tell you how sexist they are.">
+  <meta property="og:title" content="Name an MC and we'll tell you how sexist they are.">
+  <title>Investigating <%= company.name %></title>
+  <script>window.rm = {};</script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+  <link rel="icon" href="favicon.ico" type="image/x-icon"/>
+</head>
+<body>
+  <header class="small">
+    <div class="wrapper">
+      <h1>Investigating <%= company.name %></h1>
+    </div>
+  </header>
+  <section>
+    <h3><%= company.name %></h3>
+    <p><%= company.mission_statement %></p>
+    <div class="wrapper">
+      <form action="/companies/update" method="POST">
+        <input type="hidden" name="company_id" value="<%= company.id %>"/>
+        <textarea name="mission_statement_proof" placeholder="mission statement proof"></textarea>
+        <input type="text" name="mission_statement_investigator" placeholder="investigator name" />
+        <input type="submit" value="submit" class="btn" />
+      </form>
+    </div>
+  </section>
+  <footer>Made by <a href="http://andersfisher.com">Anders Fisher</a></footer>
+</body>
+</html>
