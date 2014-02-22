@@ -94,6 +94,7 @@ PLATFORMS
 DEPENDENCIES
   data_mapper
   dm-postgres-adapter
+  dm-serializer
   json
   pg
   pry
