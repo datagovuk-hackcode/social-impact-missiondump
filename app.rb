@@ -39,24 +39,11 @@ helpers do
     response
   end
 
-  def create_news_stories name, id
-    news_items = fetch_news_stories name 
-    news_items.each do |news_item|
-      NewsSource.create!({
-        :company_id => id,
-        :name => news_item["source"],
-        :headline => news_item["title"],
-        :url => news_item["url"],
-        :polarity => news_item["score"]
-      })
-    end
+  def request_news_stories id, name
+    uri = URI.parse("http://79df7f35.ngrok.com/queue")
+    response = Net::HTTP.post_form(uri, { id: id, name: name })
   end
 
-  def fetch_news_stories name
-    uri = URI.parse("http://79df7f35.ngrok.com/news/#{name}")
-    response = Net::HTTP.get_response(uri)
-    JSON.parse(response.body)
-  end
 end
 
 DataMapper.setup(:default, ENV['HEROKU_POSTGRESQL_WHITE_URL'] || ENV['LOCAL_URL'])
@@ -123,6 +110,17 @@ get '/investigations/new' do
   erb :new_investigation, :locals => { :company => company }
 end
 
+post '/news_sources' do
+  protected!
+  NewsSource.create!({
+    :company_id => Sanitize.clean(params["id"]),
+    :name => Sanitize.clean(params["source"]),
+    :headline => Sanitize.clean(news_item["title"]),
+    :url => Sanitize.clean(news_item["url"]),
+    :polarity => Sanitize.clean(news_item["score"])
+  })
+end
+
 post '/companies' do
   protected!
   name = Sanitize.clean(params[:name])
@@ -130,7 +128,7 @@ post '/companies' do
     name: name,
     mission_statement: Sanitize.clean(params[:mission_statement])
   })
-  create_news_stories name, company.id
+  request_news_stories name, company.id
   redirect to('/companies.json')
 end
 
