@@ -16,11 +16,11 @@ get '/style.css' do
   send_file 'style.css'
 end
 
-get '/favicon.ico' do
-  send_file 'favicon.ico'
-end
+# get '/favicon.ico' do
+#   send_file 'favicon.ico'
+# end
 
-get '/sample.json'} do |request|
+get '/sample.json' do
   # uri = URI.parse("http://pod.opendatasoft.com/api/records/1.0/search")
   # response = Net::HTTP.post_form(uri, {
   #   dataset: "pod_brand",
@@ -31,8 +31,8 @@ get '/sample.json'} do |request|
    {
     company_name: 'Coca-Cola' || params[:company_name],
     mission_statement: 'Coca-Cola is awesome x approx 150 words',
-    mission_statement_proof: 'Coca cola IS awesome for realz'
-    mission_statement_investigator: 'John Smith - WHO'
+    mission_statement_proof: 'Coca cola IS awesome for realz',
+    mission_statement_investigator: 'John Smith - WHO',
     news_sources: [
       { 
         name: "Al Jazeera",

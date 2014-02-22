@@ -12,7 +12,7 @@ window.foodrank.App = function(){
     var request = $('.json_input').val();
     if(present(request)){
       print_result('thinking...');
-      $.getJSON('/response.json', {request:request}, print_result);
+      $.getJSON('/sample.json', {request:request}, print_result);
     }else{
       print_result('please!');
     }
