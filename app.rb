@@ -32,21 +32,29 @@ helpers do
         mission_statement: company.mission_statement,
         mission_statement_proof: company.mission_statement_proof,
         mission_statement_investigator: company.mission_statement_proof,
-        news_sources: [
-          { 
-            name: "Al Jazeera",
-            headline: 'Coke killed 15 people today',
-            polarity: 0.1
-          },
-          {
-            name: 'New York Times',
-            headline: 'Coke have found a cure for cancer',
-            polarity: 0.9
-          }
-        ]
+        news_sources: NewsSource.all(company_id: company.id)
       }
     end
     response
+  end
+
+  def create_news_stories name, id
+    news_items = fetch_news_stories name 
+    news_items.each do |news_item|
+      NewsSource.create!({
+        :company_id => id,
+        :name => news_item["source"],
+        :headline => news_item["title"],
+        :url => news_item["url"],
+        :polarity => news_item["score"]
+      })
+    end
+  end
+
+  def fetch_news_stories name
+    uri = URI.parse("http://79df7f35.ngrok.com/news/#{name}")
+    response = Net::HTTP.get_response(uri)
+    JSON.parse(response.body)
   end
 end
 
@@ -56,8 +64,8 @@ class Company
   include DataMapper::Resource
   property :id, Serial
   property :name, String
-  property :mission_statement, Text,   :lazy => false
-  property :mission_statement_proof, Text,   :lazy => false
+  property :mission_statement, Text, lazy: false
+  property :mission_statement_proof, Text, lazy: false
   property :mission_statement_investigator, String
 end
 
@@ -65,9 +73,10 @@ class NewsSource
   include DataMapper::Resource
   property :id, Serial
   property :company_id, Integer
-  property :name, String
-  property :headline, String
-  property :polarity, Float  
+  property :name, Text, lazy: false
+  property :headline, Text, lazy: false
+  property :polarity, Float 
+  property :url, Text, lazy: false
   belongs_to :company
 end  
 
@@ -83,11 +92,17 @@ get '/style.css' do
 end
 
 get '/' do
-  erb :index
+  erb :companies, :locals => { :companies => Company.all }
 end
 
 get '/companies' do
   erb :companies, :locals => { :companies => Company.all }
+end
+
+get '/companies' do
+  company_id = Sanitize.clean(params[:company_id])
+  company = Company.first(id: company_id)
+  erb :company, :locals => { company => company }
 end
 
 get '/companies/new' do
@@ -109,10 +124,12 @@ end
 
 post '/companies' do
   protected!
-  Company.create({
-    name: Sanitize.clean(params[:name]),
+  name = Sanitize.clean(params[:name])
+  company = Company.create({
+    name: name,
     mission_statement: Sanitize.clean(params[:mission_statement])
   })
+  create_news_stories name, company.id
   redirect to('/companies.json')
 end
 

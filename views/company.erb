@@ -9,7 +9,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="description" content="Name an MC and we'll tell you how sexist they are.">
   <meta property="og:title" content="Name an MC and we'll tell you how sexist they are.">
-  <title>Investigate Companies</title>
+  <title><%= company.name %></title>
   <script>window.rm = {};</script>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
@@ -18,24 +18,14 @@
 <body>
   <header class="small">
     <div class="wrapper">
-      <h1>Investigate Companies</h1>
+      <h1><%= company.name %></h1>
     </div>
   </header>
   <section>
-    <div class="wrapper">
-      <ul class="companies">
-      <% companies.each do |company| %>
-        <li>
-          <a href="/investigations/new?company_id=<%= company.id %>">
-            <%= company.name %> 
-            <% unless company.mission_statement_proof %>
-              <span>needs investigation</span>
-            <% end %>
-          </a>
-      </h3>
-      <% end %>
-      </ul>
-    </div>
+    <h3><%= company.name %></h3>
+    <p><%= company.mission_statement %></p>
+    <p><%= company.mission_statement_proof %></p>
+    <p><%= company.mission_statement_investigator %></p>
   </section>
   <footer>Made by <a href="http://andersfisher.com">Anders Fisher</a></footer>
 </body>
