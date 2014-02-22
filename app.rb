@@ -16,7 +16,7 @@ helpers do
 
   def authorized?
     @auth ||=  Rack::Auth::Basic::Request.new(request.env)
-    @auth.provided? and @auth.basic? and @auth.credentials and @auth.credentials == [ENV['UN'], ENV['PWD']]
+    @auth.provided? and @auth.basic? and @auth.credentials and @auth.credentials == [ENV['USERNAME'], ENV['PASSWORD']]
   end
 
   def fetch_companies query
@@ -95,8 +95,7 @@ post '/companies' do
     mission_statement_proof: Sanitize.clean(params[:mission_statement_proof]),
     mission_statement_investigator: Sanitize.clean(params[:mission_statement_investigator])
   })
-
-  redirect to('/')
+  redirect to('/companies.json')
 end
 
 get '/companies.json' do
