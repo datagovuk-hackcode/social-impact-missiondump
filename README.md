@@ -1,4 +1,5 @@
-rap_misogyny
-============
 
-Rap Misogyny is an attempt at parsing hip hop lyrics for misogynistic terms.
+missiondump
+===========
+
+A JSON repo to provide aggregated mission statements from companies to provide evidence of their social impact.
