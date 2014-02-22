@@ -1,0 +1,153 @@
+*{
+  margin:0;
+  padding:0;
+  color:inherit;
+  text-decoration: none;
+  border:none;
+  font-family:'Open Sans', sans-serif;
+  font-weight:lighter;
+  line-height: 1.4em;
+}
+body{
+  margin-bottom:48px;
+}
+h1{
+  font-size:128px;
+  line-height: 112px;
+  margin-bottom: 56px;
+}
+h2{ 
+  font-size: 56px;
+  margin-bottom:8px;
+}
+h3{ 
+  font-size: 32px;
+  margin-bottom:8px;
+}
+p{
+  font-size: 16px;
+  margin-bottom:8px;
+  max-width:800px;
+}
+header{
+  background:#333;
+  color:white;
+  padding: 120px 64px;
+}
+header h3{
+  font-style: italic;
+}
+section{
+  padding: 64px;
+}
+footer{
+  position:fixed;
+  bottom:0;
+  left:0;
+  width:100%;
+  box-sizing:border-box;
+  padding:16px;
+  background:#333333;
+  background:rgba(0,0,0,0.8);
+  color:white;
+  text-align:right;
+}
+footer a{
+  color:red;
+}
+.red-text{
+  color:red;
+}
+.wrapper{
+  max-width:1000px;
+  margin: 0 auto;
+}
+
+.btn{
+  padding:8px;
+  background:#ccc;
+  color:white;
+  display:inline-block;
+  border-radius:4px;
+  transition:background 0.5s ease-out;
+}
+.btn:hover{
+  background:#777;
+}
+.btn:active{
+  background:#333;
+}
+
+.text-right{
+  text-align: right;
+}
+
+textarea,
+input[type=text]{
+  padding:7px;
+  border: 1px solid #ccc;
+  border-radius:2px;
+  width:100%;
+  background:none;
+  box-sizing:border-box;
+  margin-bottom: 8px;
+  font-size:32px;
+}
+textarea{
+  min-height:128px;
+}
+
+@media all and (max-width:650px){
+  h1{
+    font-size:96px;
+  }
+  h2{
+    font-size:48px;
+  }
+  h3{
+    font-size:24px;
+  }
+}
+@media all and (max-width:520px){
+  section{
+    padding:32px;
+  }
+  header{
+    padding:64px 32px;
+  }
+}
+@media all and (max-width:460px){
+  h1{
+    font-size:64px;
+  }
+  h2{
+    font-size:28px;
+  }
+  h3{
+    font-size:20px;
+  }
+}
+@media all and (max-width:430px){
+  body{
+    margin-bottom:64px;
+  }
+}
+@media all and (max-width:400px){
+  header{
+    padding:32px 16px;
+  }
+  section{
+    padding:16px;
+  }
+}
+@media all and (max-width:320px){
+  h1{
+    font-size:48px;
+  }
+  h2{
+    font-size:24px;
+  }
+  h3{
+    font-size:16px;
+  }
+}
