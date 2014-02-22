@@ -115,9 +115,9 @@ post '/news_sources' do
   NewsSource.create!({
     :company_id => Sanitize.clean(params["id"]),
     :name => Sanitize.clean(params["source"]),
-    :headline => Sanitize.clean(news_item["title"]),
-    :url => Sanitize.clean(news_item["url"]),
-    :polarity => Sanitize.clean(news_item["score"])
+    :headline => Sanitize.clean(params["title"]),
+    :url => Sanitize.clean(params["url"]),
+    :polarity => Sanitize.clean(params["score"])
   })
 end
 
