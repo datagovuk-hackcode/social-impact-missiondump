@@ -153,12 +153,13 @@ end
 #update
 post '/investigations' do
   protected!
-  company = Company.first(id: Sanitize.clean(params[:company_id]))
+  id = Sanitize.clean(params[:company_id])
+  company = Company.first(id: id)
   company.update({
     mission_statement_proof: Sanitize.clean(params[:mission_statement_proof]),
     mission_statement_investigator: Sanitize.clean(params[:mission_statement_investigator])
   })
-  redirect to('/companies.json')
+  redirect to("/investigations")
 end
 
 # news sources
