@@ -178,7 +178,7 @@ get '/news_sources.json' do
 end
 
 #new
-post '/news_sources' do
+post '/news_sources/:id' do
   protected!
   NewsSource.create!({
     :company_id => Sanitize.clean(params["id"]),
