@@ -29,6 +29,10 @@ helpers do
     old_company.destroy if old_company
   end
 
+  def polarity_class news_source
+    response = "negative_polarity"
+  end
+
   def search_companies input
     slug = slugify(input)
     if slug == "*"
