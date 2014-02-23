@@ -123,13 +123,13 @@ ul.news_sources li a:before{
   display:inline-block;
 }
 ul.news_sources li a.neutral_polarity:before{
-  background:goldenrod;
+  background:rgb(218, 177, 76);
 }
 ul.news_sources li a.positive_polarity:before{
-  background:green;
+  background:rgb(76, 218, 87);
 }
 ul.news_sources li a.negative_polarity:before{
-  background:red;
+  background:rgb(218, 116, 76);
 }
 ul.news_sources li:nth-child(even) a,
 ul.companies li:nth-child(even) a{
