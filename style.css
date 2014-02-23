@@ -115,20 +115,24 @@ ul.companies li a{
   background:#f5f5f5;
   font-size:32px;
 }
-ul.news_sources li a:before{
+ul.news_sources li a:before,
+span.dot{
   content: "";
   border-radius:50%;
   width:24px;
   height:24px;
   display:inline-block;
 }
-ul.news_sources li a.neutral_polarity:before{
+ul.news_sources li a.neutral_polarity:before,
+span.dot.neutral{
   background:rgb(218, 177, 76);
 }
-ul.news_sources li a.positive_polarity:before{
+ul.news_sources li a.positive_polarity:before,
+span.dot.positive{
   background:rgb(76, 218, 87);
 }
-ul.news_sources li a.negative_polarity:before{
+ul.news_sources li a.negative_polarity:before,
+span.dot.negative{
   background:rgb(218, 116, 76);
 }
 ul.news_sources li:nth-child(even) a,
@@ -195,6 +199,15 @@ textarea{
   }
   h3{
     font-size:24px;
+  }
+  ul.news_sources li a,
+  ul.companies li a {
+    font-size:16px;
+  }
+  ul.news_sources li a:before,
+  span.dot{
+    width:16px;
+    height:16px;
   }
 }
 @media all and (max-width:520px){
