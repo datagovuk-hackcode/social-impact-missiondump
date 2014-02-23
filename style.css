@@ -38,6 +38,7 @@ header.small{
 }
 header.small h1{
   font-size:72px;
+  margin-bottom:24px;
 }
 header h3{
   font-style: italic;
