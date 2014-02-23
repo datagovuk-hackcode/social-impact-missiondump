@@ -27,10 +27,12 @@
   <section class="companies">
     <div class="wrapper">
       <% companies.each do |company| %>
-      <section class="company <%= 'proved' if company.mission_statement_proof %>">
-        <h3><%= company.name %></h3>
-        <p><%= company.mission_statement %></p>
-      </section>
+      <a href="/companies/<%= company.id %>">
+        <section class="company <%= 'proved' if company.mission_statement_proof %>">
+          <h3><%= company.name %></h3>
+          <p><%= company.mission_statement %></p>
+        </section>
+      </a>
       <% end %>
     </div>
   </section>

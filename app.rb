@@ -106,7 +106,8 @@ end
 get '/companies/:id' do |id|
   company_id = Sanitize.clean(id)
   company = Company.first(id: id)
-  erb :company, locals: { company: company }
+  news_sources = NewsSource.all(company_id: id)
+  erb :company, locals: { company: company, news_sources: news_sources }
 end
 
 
