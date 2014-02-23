@@ -96,8 +96,9 @@ section.company.proved{
 ul{
   padding-left: 1.5em;
 }
+ul.news_sources,
 ul.companies{
-
+  padding-left: 0;
 }
 ul.news_sources li,
 ul.companies li{
