@@ -81,7 +81,7 @@ section.company{
   padding: 16px;
   font-size: 16px;
 }
-section.company:nth-child(even){
+a:nth-child(even) section.company{
   background:#e0e0e0;
 }
 section.company.proved{
