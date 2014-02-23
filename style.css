@@ -81,6 +81,14 @@ section.company{
   padding: 16px;
   font-size: 16px;
 }
+a:first-child section.company{
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+}
+a:last-child section.company{
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
 a:nth-child(even) section.company{
   background:#e0e0e0;
 }
