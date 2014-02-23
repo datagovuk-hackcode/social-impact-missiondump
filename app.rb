@@ -46,7 +46,7 @@ helpers do
   end
 
   def request_news_stories id, name
-    uri = URI.parse("http://79df7f35.ngrok.com/queue")
+    uri = URI.parse("http://s.craigsnowden.com:5000/queue")
     response = Net::HTTP.post_form(uri, { id: id, name: name })
   end
 
