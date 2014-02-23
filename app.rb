@@ -20,16 +20,16 @@ helpers do
     @auth.provided? and @auth.basic? and @auth.credentials and @auth.credentials == [ENV['USERNAME'], ENV['PASSWORD']]
   end
 
-  def prepare string
-    string.sub('', '_').downcase
+  def slugify string
+    string.strip.tr(' ', '_').downcase
   end
 
   def search_companies input
-    query = input
-    if query == "*"
+    slug = slugify(input)
+    if slug == "*"
       companies = Company.all
     else
-      companies = Company.all(name: query)
+      companies = Company.all(slug: slug)
     end
     response = []
     companies.each do |company|
@@ -57,6 +57,7 @@ class Company
   include DataMapper::Resource
   property :id, Serial
   property :name, String
+  property :slug, String
   property :mission_statement, Text, lazy: false
   property :mission_statement_proof, Text, lazy: false
   property :mission_statement_investigator, String
@@ -117,6 +118,7 @@ post '/companies' do
   name = Sanitize.clean(params[:name])
   company = Company.create({
     name: name,
+    slug: slugify(name),
     mission_statement: Sanitize.clean(params[:mission_statement])
   })
   request_news_stories name, company.id
@@ -129,8 +131,8 @@ get '/companies.json' do
 end
 
 #search
-get '/search/:name.json' do |name|
-  search_companies(Sanitize.clean(name)).to_json
+get '/search/:slug.json' do |slug|
+  search_companies(Sanitize.clean(slug)).to_json
 end
 
 #investigation
