@@ -25,14 +25,20 @@
   </header>
   <section>
     <div class="wrapper">
-      <h3><%= company.name %></h3>
-      <p><%= company.mission_statement.gsub(/[\r\n]+/, "<br>") %></p>
+      <h3>Submitting a Mission Statement Proof</h3>
+      <p>When providing evidence of the above mission statement, please try to explain your findings in a simple impartial way, this proof will be available to general public and will be associated with both you and your organisation. For your reference the company mission statement is below.</p>
       <form action="/investigations" method="POST">
         <input type="hidden" name="company_id" value="<%= company.id %>"/>
         <textarea name="mission_statement_proof" placeholder="mission statement proof"></textarea>
         <input type="text" name="mission_statement_investigator" placeholder="investigator name" />
         <input type="submit" value="submit" class="btn" />
       </form>
+    </div>
+  </section>
+  <section>
+    <div class="wrapper">
+      <h3><%= company.name %></h3>
+      <p><%= company.mission_statement.gsub(/[\r\n]+/, "<br>") %></p>
     </div>
   </section>
 </body>
