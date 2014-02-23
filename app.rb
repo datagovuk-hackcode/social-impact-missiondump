@@ -24,6 +24,11 @@ helpers do
     string.strip.tr(' ', '_').downcase
   end
 
+  def remove_old_company slug
+    old_company = Company.first(slug: slug)
+    old_company.destroy if old_company
+  end
+
   def search_companies input
     slug = slugify(input)
     if slug == "*"
@@ -115,9 +120,11 @@ end
 post '/companies' do
   protected!
   name = Sanitize.clean(params[:name])
+  slug = slugify(name)
+  remove_old_company slug
   company = Company.create({
     name: name,
-    slug: slugify(name),
+    slug: slug,
     mission_statement: Sanitize.clean(params[:mission_statement])
   })
   request_news_stories name, company.id
