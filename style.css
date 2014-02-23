@@ -12,7 +12,8 @@ body{
   margin-bottom:48px;
 }
 h1{
-  font-size:128px;
+  font-size: 96px;
+  line-height: 1.2em;
 }
 h2{ 
   font-size: 56px;
@@ -77,6 +78,9 @@ section.company.proved{
   background:#eee;
 }
 
+ul{
+  padding-left: 1.5em;
+}
 ul.companies{
 
 }

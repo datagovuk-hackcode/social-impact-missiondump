@@ -18,17 +18,58 @@
   <header>
     <div class="wrapper">
       <h1>Social Impact of Companies</h1>
-      <h3>Compare the mission statements of companies with peer reviews and news titles.</h3>
+      <h3>Compare the mission statements of companies with peer reviews and news titles.
+      </h3>
+      <nav>
+        <a href="/companies">All Companies</a>
+        <a href="/companies/new">New Company</a>
+        <a href="/investigations">Investigations</a>
+        <a href="/news_sources">All News Sources</a>
+      </nav>
     </div>
   </header>
   <section>
     <div class="wrapper">
-      <input type="text" class="json_input" placeholder="What is the name of the company?">
-      <a href="#" class="get btn">go!</a>
-      <div class="result"></div>
+      <h2>About</h2>
+      <p>This project was built in 2 days by three enthusiastic developers</p>
+      <p>The aim is to encourage companies to provide a measured approach to their mission statements. These statements will then be independently assessed (by an appropriate individual) who will provide a brief proof of the company's intentions.</p>
+      <p>This service will also provide these brief mission statements, proofs and some associated news stories to the public in 3 formats:</p> 
+      <ul>
+        <li>A JSON api allowing developers/ data analysts to collate and explore the data more thoroughly</li>
+        <li>A Windows App that provides a smooth clean interface to explore the data on a variety of devices.</li>
+        <li>A responsive web site that allows for quick exploration of the companiesi ncluded</li>
+      </ul>
     </div>
   </section>
-  
-  <footer>Made by <a href="http://andersfisher.com">Anders Fisher</a></footer>
+  <section>
+    <div class="wrapper">
+      <h2>Technical Stuff</h2>
+      <p>The project is made of three parts, each work together to provide the end user with easy access to companies, their mission statements and news stories about them.
+      </p>
+      
+      <h3>Part 1: Windows Store Client</h3>
+      <p>Kaelan has written a C# windows application that can retried data about companies using a JSON search api, as well as create a company and post it to the service.</p>
+      
+      <h3>Part 2: Ruby Web Client/Service</h3>
+      <p>Anders wrote a ruby servicet hat provides information on a company in json format as well as in a human readable html format. All Data is stored in a database connected to the ruby app. On creation of a new company via the windows client or the html forms a request for news stories is passed to the news sentiment service.
+      Each company has its core data created in two processes, one for the company</p>
+
+      <h3>Part 3: News Sentiment Analysis Service</h3>
+      <p>Craig spent time writing a service that retrieves new sources based on the company name, analyses them for their sentiment then posts them to the Ruby Web client for storage in relation to a specific company.</p>
+    </div>
+  </section>
+  <section>
+    <div class="wrapper">
+      <h2>Moving Forward</h2>
+      <p>Two days isn't a long time, all three of the developers involved had some ideas about how the service could be improved over time. Below are some highlights.</p>
+      <ul>
+        <li>The ability for a user to request a company sign up.</li>
+        <li>More in depth data about the company</li>
+        <li>More news sources and social proof of the company</li>
+        <li>A crowd sourced approval process, giving additional agency for a company's mission statement.</li>
+        <li>More clients, iOS and Android</li>
+      </ul>
+    </div>
+  </section>
 </body>
 </html>

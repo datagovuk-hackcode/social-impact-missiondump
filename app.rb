@@ -33,6 +33,7 @@ helpers do
     end
     response = []
     companies.each do |company|
+      binding.pry
       response << {
         name: company.name,
         mission_statement: company.mission_statement,
@@ -88,7 +89,7 @@ end
 
 #home
 get '/' do
-  erb :companies, :locals => { :companies => Company.all }
+  erb :index
 end
 
 #companies
