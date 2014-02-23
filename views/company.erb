@@ -27,7 +27,7 @@
     <h3><%= company.name %></h3>
     <p><%= company.mission_statement %></p>
   </section>
-  <% unless company.mission_statement_proof.empty? %>
+  <% unless company.mission_statement_proof %>
     <section>
       <h3>Social Proof</h3>
       <p><%= company.mission_statement_proof %></p>
