@@ -31,7 +31,7 @@
       <ul class="news_sources">
         <% news_sources.each do |news_source| %>
           <li>
-            <a href="/news_sources/<%= news_source.id %>">
+            <a href="/news_sources/<%= news_source.id %>" class=" <%= polarity_class news_source %>">
               <%= news_source.headline %>
             </a>
           </li>
