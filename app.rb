@@ -178,10 +178,10 @@ get '/news_sources.json' do
 end
 
 #new
-post '/news_sources/:id' do
+post '/news_sources/:id' do |id|
   protected!
   NewsSource.create!({
-    :company_id => Sanitize.clean(params["id"]),
+    :company_id => Sanitize.clean(id),
     :name => Sanitize.clean(params["source"]),
     :headline => Sanitize.clean(params["title"]),
     :url => Sanitize.clean(params["url"]),
