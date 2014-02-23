@@ -118,8 +118,8 @@ ul.companies li a{
 ul.news_sources li a:before{
   content: "";
   border-radius:50%;
-  width:16px;
-  height:16px;
+  width:24px;
+  height:24px;
   display:inline-block;
 }
 ul.news_sources li a.neutral_polarity:before{
