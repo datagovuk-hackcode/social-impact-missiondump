@@ -30,7 +30,10 @@ helpers do
   end
 
   def polarity_class news_source
-    response = "negative_polarity"
+    response = "neutral_polarity"
+    response = "positive_polarity" if news_source.polarity > 0.3
+    response = "negative_polarity" if news_source.polarity < -0.3
+    response
   end
 
   def search_companies input
