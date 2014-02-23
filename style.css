@@ -81,16 +81,11 @@ section.company{
   background: #ccc;
   padding: 16px;
   font-size: 16px;
-  display: inline-block;
-  width: 50%;
   min-height: 240px;
-  vertical-align: top;
-  box-sizing: border-box;
-  border: 4px solid white;
 }
 section.company.proved{
   font-size:18px;
-  background:#eee;
+  background:#cec;
 }
 
 ul{
