@@ -32,6 +32,9 @@
         <section class="company <%= 'proved' if company.mission_statement_proof %>">
           <h3><%= company.name %></h3>
           <p><%= company.mission_statement.gsub(/[\r\n]+/, "<br>") %></p>
+          <% if company.mission_statement_proof %>
+          <p>This company has social proof</p>
+          <% end %>
         </section>
       </a>
       <% end %>
