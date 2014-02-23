@@ -56,6 +56,17 @@ footer{
   color:white;
   text-align:right;
 }
+nav{
+  font-size: 0;
+}
+nav a.btn{
+  font-size: 16px;
+  margin-right:4px;
+  margin-bottom:4px;
+}
+nav a.btn:last-child{
+  margin-right: 0;
+}
 footer a{
   color:rgb(79, 42, 175);
 }
@@ -172,6 +183,7 @@ textarea{
   h2{
     font-size:28px;
   }
+  .btn,
   h3{
     font-size:20px;
   }
@@ -203,6 +215,7 @@ textarea{
   h2{
     font-size:24px;
   }
+  .btn,
   ul.companies li a,
   h3{
     font-size:16px;

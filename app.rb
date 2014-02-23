@@ -79,9 +79,6 @@ DataMapper.finalize
 DataMapper.auto_upgrade!
 
 #file routing
-get '/script.js' do
-  send_file 'script.js'
-end
 
 get '/style.css' do
   send_file 'style.css'

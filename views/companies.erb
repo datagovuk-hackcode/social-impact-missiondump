@@ -7,10 +7,7 @@
   <meta name="apple-touch-fullscreen" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes"> 
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <title>Our companies</title>
-  <script>window.foodrank = {};</script>
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-  <script src="/script.js"></script>
+  <title>Mission Control - Companies</title>
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
   <link rel="icon" href="favicon.ico" type="image/x-icon"/>
 </head>
@@ -18,11 +15,12 @@
   <header class="small">
     <div class="wrapper">
       <h1>The Companies</h1>
+      <h3>These are the companies that have signed up for Mission Control.</h3>
       <nav>
-        <a href="/companies">All Companies</a>
-        <a href="/companies/new">New Company</a>
-        <a href="/investigations">Investigations</a>
-        <a href="/news_sources">All News Sources</a>
+        <a href="/companies" class="btn">All Companies</a>
+        <a href="/companies/new" class="btn">New Company</a>
+        <a href="/investigations" class="btn">Investigations</a>
+        <a href="/news_sources" class="btn">All News Sources</a>
       </nav>
     </div>
   </header>
@@ -36,7 +34,5 @@
       <% end %>
     </div>
   </section>
-  
-  <footer>Made by <a href="http://andersfisher.com">Anders Fisher</a></footer>
 </body>
 </html>

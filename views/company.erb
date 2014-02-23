@@ -7,11 +7,7 @@
   <meta name="apple-touch-fullscreen" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes"> 
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="description" content="Name an MC and we'll tell you how sexist they are.">
-  <meta property="og:title" content="Name an MC and we'll tell you how sexist they are.">
-  <title><%= company.name %></title>
-  <script>window.rm = {};</script>
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <title>Mission Control - <%= company.name %></title>
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
   <link rel="icon" href="favicon.ico" type="image/x-icon"/>
 </head>
@@ -20,19 +16,23 @@
     <div class="wrapper">
       <h1><%= company.name %></h1>
       <nav>
-        <a href="/companies">All Companies</a>
-        <a href="/companies/new">New Company</a>
-        <a href="/investigations">Investigations</a>
-        <a href="/news_sources">All News Sources</a>
+        <a href="/companies" class="btn">All Companies</a>
+        <a href="/companies/new" class="btn">New Company</a>
+        <a href="/investigations" class="btn">Investigations</a>
+        <a href="/news_sources" class="btn">All News Sources</a>
       </nav>
     </div>
   </header>
   <section>
     <h3><%= company.name %></h3>
     <p><%= company.mission_statement %></p>
-    <p><%= company.mission_statement_proof %></p>
-    <p><%= company.mission_statement_investigator %></p>
   </section>
-  <footer>Made by <a href="http://andersfisher.com">Anders Fisher</a></footer>
+  <% unless company.mission_statement_proof.empty? %>
+    <section>
+      <h3>Social Proof</h3>
+      <p><%= company.mission_statement_proof %></p>
+      <p>Investigator: <%= company.mission_statement_investigator %></p>
+    </section>
+  <% end %>
 </body>
 </html>

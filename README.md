@@ -1,5 +1,5 @@
 
-missiondump
+Mission Control
 ===========
 
-A JSON repo to provide aggregated mission statements from companies to provide evidence of their social impact.
+A Sinatra app designed to keep track of mission statements of companies and their social proofs. New Companies and News Items can be inserted via an authenticated API.
