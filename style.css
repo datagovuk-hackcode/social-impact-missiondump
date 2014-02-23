@@ -78,10 +78,8 @@ section.companies{
   font-size:0;
 }
 section.company{
-  background: #ccc;
   padding: 16px;
   font-size: 16px;
-  min-height: 240px;
 }
 section.company.proved{
   font-size:18px;
