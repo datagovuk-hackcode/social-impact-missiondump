@@ -7,28 +7,33 @@
   <meta name="apple-touch-fullscreen" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes"> 
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="description" content="Name an MC and we'll tell you how sexist they are.">
-  <meta property="og:title" content="Name an MC and we'll tell you how sexist they are.">
-  <title>New Company</title>
+  <title>News Sources</title>
+  <script>window.foodrank = {};</script>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="/script.js"></script>
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
   <link rel="icon" href="favicon.ico" type="image/x-icon"/>
 </head>
 <body>
   <header class="small">
     <div class="wrapper">
-      <h1>New company</h1>
+      <h1>News Sources</h1>
     </div>
   </header>
   <section>
     <div class="wrapper">
-      <form action="/companies" method="POST">
-        <input type="text" name="name" placeholder="Enter the company name"/>
-        <textarea name="mission_statement" placeholder="enter your mission statement here"></textarea>
-        <input type="submit" value="submit" class="btn" />
-      </form>
+      <ul class="news_sources">
+        <% news_sources.each do |news_source| %>
+          <li>
+            <a href="/news_sources/<%= news_source.id %>">
+              <%= news_source.headline %>
+            </a>
+          </li>
+        <% end %>
+      </ul>
     </div>
   </section>
+  
   <footer>Made by <a href="http://andersfisher.com">Anders Fisher</a></footer>
 </body>
 </html>

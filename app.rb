@@ -20,7 +20,12 @@ helpers do
     @auth.provided? and @auth.basic? and @auth.credentials and @auth.credentials == [ENV['USERNAME'], ENV['PASSWORD']]
   end
 
-  def fetch_companies query
+  def prepare string
+    string.sub('', '_').downcase
+  end
+
+  def search_companies input
+    query = input
     if query == "*"
       companies = Company.all
     else
@@ -71,6 +76,7 @@ end
 DataMapper.finalize
 DataMapper.auto_upgrade!
 
+#file routing
 get '/script.js' do
   send_file 'script.js'
 end
@@ -79,48 +85,33 @@ get '/style.css' do
   send_file 'style.css'
 end
 
+#home
 get '/' do
   erb :companies, :locals => { :companies => Company.all }
 end
 
+#companies
+
+#index
 get '/companies' do
   erb :companies, :locals => { :companies => Company.all }
 end
 
-get '/companies' do
-  company_id = Sanitize.clean(params[:company_id])
-  company = Company.first(id: company_id)
-  erb :company, :locals => { company => company }
-end
-
+#new
 get '/companies/new' do
   protected!
   erb :new_company
 end
 
-get '/investigations' do
-  protected!
-  erb :investigations, :locals => { :companies => Company.all }
+#show
+get '/companies/:id' do |id|
+  company_id = Sanitize.clean(id)
+  company = Company.first(id: id)
+  erb :company, locals: { company: company }
 end
 
-get '/investigations/new' do
-  protected!
-  company_id = Sanitize.clean(params[:company_id])
-  company = Company.first(id: company_id)
-  erb :new_investigation, :locals => { :company => company }
-end
 
-post '/news_sources' do
-  protected!
-  NewsSource.create!({
-    :company_id => Sanitize.clean(params["id"]),
-    :name => Sanitize.clean(params["source"]),
-    :headline => Sanitize.clean(params["title"]),
-    :url => Sanitize.clean(params["url"]),
-    :polarity => Sanitize.clean(params["score"])
-  })
-end
-
+#create
 post '/companies' do
   protected!
   name = Sanitize.clean(params[:name])
@@ -129,10 +120,37 @@ post '/companies' do
     mission_statement: Sanitize.clean(params[:mission_statement])
   })
   request_news_stories name, company.id
-  redirect to('/companies.json')
+  redirect to("/companies/#{company.id}")
 end
 
-post '/companies/update' do
+#json
+get '/companies.json' do
+  Company.all.to_json
+end
+
+#search
+get '/search/:name.json' do |name|
+  search_companies(Sanitize.clean(name)).to_json
+end
+
+#investigation
+
+#index
+get '/investigations' do
+  protected!
+  erb :investigations, :locals => { :companies => Company.all }
+end
+
+#create
+get '/investigations/new' do
+  protected!
+  company_id = Sanitize.clean(params[:company_id])
+  company = Company.first(id: company_id)
+  erb :new_investigation, locals: { company: company }
+end
+
+#update
+post '/investigations' do
   protected!
   company = Company.first(id: Sanitize.clean(params[:company_id]))
   company.update({
@@ -142,10 +160,31 @@ post '/companies/update' do
   redirect to('/companies.json')
 end
 
-get '/companies.json' do
-  Company.all.to_json
+# news sources
+
+#index
+get '/news_sources' do
+  erb :news_sources, locals: { news_sources: NewsSource.all }
 end
 
-get '/sample.json' do
-  fetch_companies(Sanitize.clean(params[:name])).to_json
+#show
+get '/news_sources/:id' do |id|
+  erb :news_source, locals: { news_source: NewsSource.first(Sanitize.clean(id))}
+end
+
+#json
+get '/news_sources.json' do
+  NewsSource.all.to_json
+end
+
+#new
+post '/news_sources' do
+  protected!
+  NewsSource.create!({
+    :company_id => Sanitize.clean(params["id"]),
+    :name => Sanitize.clean(params["source"]),
+    :headline => Sanitize.clean(params["title"]),
+    :url => Sanitize.clean(params["url"]),
+    :polarity => Sanitize.clean(params["score"])
+  })
 end
