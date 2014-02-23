@@ -26,7 +26,7 @@
   <section>
     <div class="wrapper">
       <h3><%= company.name %></h3>
-      <p><%= company.mission_statement %></p>
+      <p><%= company.mission_statement.gsub(/[\r\n]+/, "<br>") %></p>
     </div>
   </section>
   <% if company.mission_statement_proof %>

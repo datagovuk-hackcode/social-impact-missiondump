@@ -26,8 +26,8 @@
   <section>
     <div class="wrapper">
       <h3><%= company.name %></h3>
-      <p><%= company.mission_statement %></p>
-      <form action="/companies/update" method="POST">
+      <p><%= company.mission_statement.gsub(/[\r\n]+/, "<br>") %></p>
+      <form action="/investigations" method="POST">
         <input type="hidden" name="company_id" value="<%= company.id %>"/>
         <textarea name="mission_statement_proof" placeholder="mission statement proof"></textarea>
         <input type="text" name="mission_statement_investigator" placeholder="investigator name" />

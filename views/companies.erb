@@ -30,7 +30,7 @@
       <a href="/companies/<%= company.id %>">
         <section class="company <%= 'proved' if company.mission_statement_proof %>">
           <h3><%= company.name %></h3>
-          <p><%= company.mission_statement %></p>
+          <p><%= company.mission_statement.gsub(/[\r\n]+/, "<br>") %></p>
         </section>
       </a>
       <% end %>
